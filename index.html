@@ -64,7 +64,7 @@
 		  if (response.status=="connected") {
 			console.log("You're logged in");
 
-			var totalPosts = 400;
+			var totalPosts = 100;
 
 			for (var offset = 0; offset < totalPosts; offset += 100) {
 				var requestURL = BASE_URL + 'me/posts?limit=100&offset=' + offset + END_URL_1;
@@ -159,7 +159,7 @@
 		  		} else {
 		  			var numComments = members[name]["comments"] + 1;
 		  			members[name]["comments"] = numComments;
-		  			var filteredName = name.replace(/\s+/g, '-').toLowerCase();
+		  			var filteredName = name.replace(/\s+/g, '-').replace(/\./g, '').toLowerCase();
 		  			$('#' + filteredName).find('.comments').text(String(numComments));
 		  		}
 
@@ -173,7 +173,7 @@
 		if ($('#wait').is(":visible")) {
 			$('#wait').remove();
 		}
-		var filteredName = name.replace(/\s+/g, '-').toLowerCase();
+		var filteredName = name.replace(/\s+/g, '-').replace(/\./g, '').toLowerCase();
 		var row = $('<tr id="' + filteredName + '"></tr>');
 		var n = $('<td class="name">' + name + '</td>');
 		var l = $('<td class="likes">' + likes + '</td>');
