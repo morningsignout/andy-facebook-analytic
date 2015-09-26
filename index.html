@@ -159,7 +159,7 @@
 		  		} else {
 		  			var numComments = members[name]["comments"] + 1;
 		  			members[name]["comments"] = numComments;
-		  			var filteredName = name.replace(/\s+\.\'/g, '-').toLowerCase();
+		  			var filteredName = name.replace(/[\s|&;$%@"<>()+,.']/g, '-').toLowerCase();
 		  			$('#' + filteredName).find('.comments').text(String(numComments));
 		  		}
 
@@ -173,7 +173,7 @@
 		if ($('#wait').is(":visible")) {
 			$('#wait').remove();
 		}
-		var filteredName = name.replace(/\s+\.\'/g, '-').toLowerCase();
+		var filteredName = name.replace(/[\s|&;$%@"<>()+,.']/g, '-').toLowerCase();
 		var row = $('<tr id="' + filteredName + '"></tr>');
 		var n = $('<td class="name">' + name + '</td>');
 		var l = $('<td class="likes">' + likes + '</td>');
