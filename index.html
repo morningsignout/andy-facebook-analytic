@@ -133,7 +133,7 @@
 		  			var numLikes = members[name]["likes"] + 1;
 		  			members[name]["likes"] = numLikes;
 		  			
-		  			var filteredName = name.replace(/\s+/g, '-').toLowerCase();
+		  			var filteredName = name.replace(/\s+/g, '-').replace(/\./g, '').replace(/\'/g, '').toLowerCase();
 		  			$('#' + filteredName).find('.likes').text(String(numLikes));
 		  		}
 		  	});
@@ -159,7 +159,7 @@
 		  		} else {
 		  			var numComments = members[name]["comments"] + 1;
 		  			members[name]["comments"] = numComments;
-		  			var filteredName = name.replace(/\s+/g, '-').replace(/\./g, '').toLowerCase();
+		  			var filteredName = name.replace(/\s+/g, '-').replace(/\./g, '').replace(/\'/g, '').toLowerCase();
 		  			$('#' + filteredName).find('.comments').text(String(numComments));
 		  		}
 
