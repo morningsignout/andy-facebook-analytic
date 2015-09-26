@@ -64,7 +64,7 @@
 		  if (response.status=="connected") {
 			console.log("You're logged in");
 
-			var totalPosts = 100;
+			var totalPosts = 1000;
 
 			for (var offset = 0; offset < totalPosts; offset += 100) {
 				var requestURL = BASE_URL + 'me/posts?limit=100&offset=' + offset + END_URL_1;
