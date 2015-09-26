@@ -2,11 +2,11 @@
 <html xmlns:fb="https://www.facebook.com/2008/fbml">
 <html>
 <head>
-	<title>MSO Facebook Analytics</title>
+	<title>Andy Facebook Analytic</title>
 </head>
 <body>
 
-<h1>MSO Facebook Analytics</h1>
+<h1>Andy's Facebook Analytic</h1>
 <h3 id="wait">Please wait for the data to load...</h3>
 <aside>
 	<strong>How to use:</strong>
@@ -14,7 +14,6 @@
 	<li>Turn off Ad-Block and allow and pop-ups on the page to appear. You can do this when trying to open the site and then turn your ad blocker back on when you are done.</li>
 	<li>If you are not logged in then a pop-up will show up asking you to log in.</li>
 	<li>Please wait a few seconds for data to populate the table. There is a little lag in loading the large amount of data onto the webpage.</li>
-	<li>Note: May or may not work on mobile phones.</li>
 </aside>
 <table>
 	<tr id="head-row">
@@ -61,7 +60,6 @@
 		});
 
 		FB.login(function(response) {
-		  console.log(response);
 
 		  if (response.status=="connected") {
 			console.log("You're logged in");
@@ -94,7 +92,6 @@
 		   // if there is post data returned from Facebook
 		   if (response.data.length > 0) {
 		   		var postIDs = convertJSONToArray(response);
-		   		console.log(postIDs);
 		   		// if there are postIDs find out who liked/commented each post
 		   		var postCount = postIDs.length;
 		   		if (postCount > 0) {
@@ -123,7 +120,6 @@
 	function getLikesOfPostWithID(id) {
 		FB.api(BASE_URL + id + '/likes' + END_URL_2, 'get', { }, function(response) {
 		  var peopleWhoLikeThis = response.data;
-		  console.log(peopleWhoLikeThis);
 		  var peopleCount = peopleWhoLikeThis.length;
 		  for (var i = 0; i < peopleCount; i++) {
 		  	var userID = String(peopleWhoLikeThis[i].id);
@@ -133,7 +129,6 @@
 		  		if (members[name] == undefined) {
 		  			members[name] = { "likes" : 1, "comments" : 0 };
 		  			addTableRow(name, 1, 0);
-		  			console.log(name);
 		  		} else {
 		  			var numLikes = members[name]["likes"] + 1;
 		  			members[name]["likes"] = numLikes;
@@ -164,8 +159,7 @@
 		  		} else {
 		  			var numComments = members[name]["comments"] + 1;
 		  			members[name]["comments"] = numComments;
-		  			console.log(name);
-		  			var filteredName = name.replace(/\s+/g, '-').toLowerCase();
+		  			var filteredName = name.replace(/\s+\.\'/g, '-').toLowerCase();
 		  			$('#' + filteredName).find('.comments').text(String(numComments));
 		  		}
 
@@ -179,7 +173,7 @@
 		if ($('#wait').is(":visible")) {
 			$('#wait').remove();
 		}
-		var filteredName = name.replace(/\s+/g, '-').toLowerCase();
+		var filteredName = name.replace(/\s+\.\'/g, '-').toLowerCase();
 		var row = $('<tr id="' + filteredName + '"></tr>');
 		var n = $('<td class="name">' + name + '</td>');
 		var l = $('<td class="likes">' + likes + '</td>');
